@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/2D Tiles Sample.unity
+  isLoaded: 1
+  isActive: 1
