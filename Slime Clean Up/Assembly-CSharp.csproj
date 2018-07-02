@@ -60,11 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\PlayerController.cs" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Dima/Desktop/Slime Clean Up/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
+    <Compile Include="Assets\PlayerController3D.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Dima/Desktop/Slime Clean Up/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>C:/Users/Dima/Desktop/Slime Clean Up/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
