@@ -5,45 +5,36 @@ release date:
 revision #:0
 revision date: 7/2/2018
 
-
 High Level Goals:
-* A working game that is fun to play with friends.
-* Complete functionality (Menus, supporting different player numbers, etc.)
-* Visuals (sprites, textures, etc.)
-
+A working game that is fun to play with friends.
+Complete functionality (Menus, supporting different numbers of players, etc.)
+Visuals (sprites, textures, etc.)
+A relatively polished product, minimal bugs or missing features.
 
 User stories for release:
 Sprint 1: Working Prototype
-(13) As a Player, I want a field to play on, so that we can compete with the other team (slimes or cleaner).
-() As a player, I want to be able 
-(5) As a Cleaner, I want a form, so that I know where I am.
-(5) As a Slime, I want a form, so that I know where I am.
+(5) As a Team, we want everyone to have some basic knowledge of Unity Engine.
 (3) As a Player, I want to be able to control my character.
-
+(5) As a Player, I want a field to play on, so that we can compete with the other team (slimes or cleaner).
+(8) As a Player, I want a game that can be won or lost.
+(3) As a Player, I want a form, so that I know where I am.
 
 Sprint 2: Fleshed out Mechanics
-(3) Sprites and textures: I want to have a unique character to distinguish me from the rest of the players
-(5) Core game mechanics: I want the game to be satisfying and fun to play. (rounds and time limit)
-(5) As a Player, I want menus to select things with.
-
+(8) As a Player, I want to have a unique character to distinguish me from the rest of the players.
+(8) As a Player, I want the game to be satisfying and fun to play. 
+(5) As a Player, I want menus to select game options with.
 
 Sprint 3: Feature Complete & Polish
-(3) Add items and power ups: I want to have varying game play and items that I can use to aid my victory
-(5) varying maps: I want different maps that I can choose to play on
-(13) JUICE JUICE JUICE (Visual feedback and polish, satisfying game feel)
-
+(8) As a Player I want to have varying game play and lots of things that I can use to aid my victory.
+(5) As a Player I want different maps that I can choose to play on.
+(13) As a Player I want the game to have JUICE (Visual feedback and polish, satisfying game feel)
 
 Product Backlog:
-Working game
-Slime entity
-Cleaner entity
+Complete Animations
 Sprites for all game entities
-Working arena
 Items & power ups
 Varying arenas
 Game setup // config
-Menus
-*Online Multiplayer
-Controller support
+Online Multiplayer
 Game Sounds
-Slime creating slime on floor
+
