@@ -18,7 +18,7 @@ public class PlayerController3D : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.W))
         {
-            this.GetComponent<Rigidbody>().velocity += Vector3.fwd * speed;
+            this.GetComponent<Rigidbody>().velocity += Vector3.forward * speed;
         }
         if (Input.GetKey(KeyCode.A))
         {
