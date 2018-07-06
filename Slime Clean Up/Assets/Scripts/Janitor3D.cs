@@ -39,4 +39,12 @@ public class Janitor3D : MonoBehaviour {
 				spr.flipX = false;
 		}
 	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		print("I HIT OTHER");
+		if (other.gameObject.tag.Equals("SlimeTrail")){
+			Destroy(other.gameObject);
+		}
+	}
 }

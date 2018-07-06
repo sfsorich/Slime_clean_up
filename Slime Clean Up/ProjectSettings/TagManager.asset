@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SlimeTrail
   layers:
   - Default
   - TransparentFX
@@ -13,12 +14,12 @@ TagManager:
   - UI
   - 
   - 
+  - Active
+  - Tile Laying
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Environment
   - 
   - 
   - 
