@@ -1,0 +1,10 @@
+﻿Definition of Done:
+
+
+The required task is done if it adheres to the game design document and gameplay considerations the task affects. 
+
+
+The required task is done if it builds without warnings or errors and does not conflict with any other completed tasks functionality, unless there is an agreed need for a rewrite on conflicting functionality. Must integrate into core Unity project. Adheres to general C# Unity programming style.
+
+
+Bugs are nonexistent or within agreeable bounds as decided by the team.
