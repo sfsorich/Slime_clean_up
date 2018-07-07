@@ -35,19 +35,15 @@ public class Slime3D : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(inputMove != Vector3.zero){
-			//rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
-			rg.velocity = velocity;
-			if(Input.GetAxis("Horizontal2") > 0)
-				spr.flipX = true;
-			else if (Input.GetAxis("Horizontal2") < 0)
-				spr.flipX = false;
-			++moveCount;
-		}
-		if (moveCount > 10 && onSlime == false){
-			Instantiate(slime, this.transform.position - 0.1f*velocity - new Vector3(0,  0.2f, 0), Quaternion.Euler(90f, 0f ,0f));
-			moveCount = 0;
-		}
+        if (inputMove != Vector3.zero)
+        {
+            //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
+            rg.velocity = velocity;
+            if (Input.GetAxis("Horizontal2") < 0)
+                this.transform.localScale = new Vector3(-1, 1, 1);
+            else if (Input.GetAxis("Horizontal2") > 0)
+                this.transform.localScale = new Vector3(1, 1, 1);
+        }
 	}
 
 	/// <summary>

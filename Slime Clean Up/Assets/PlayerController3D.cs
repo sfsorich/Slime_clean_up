@@ -14,7 +14,7 @@ public class PlayerController3D : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        this.GetComponent<Rigidbody>().velocity = new Vector3(0, this.GetComponent<Rigidbody>().velocity.y, 0);
 
         if (Input.GetKey(KeyCode.W))
         {

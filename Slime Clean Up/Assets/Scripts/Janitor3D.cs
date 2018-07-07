@@ -5,7 +5,7 @@ using UnityEngine;
 public class Janitor3D : MonoBehaviour {
 
 	private Rigidbody rg;
-	private Transform transform;
+	//private Transform transform;
 	private Sprite sprite;
 	private SpriteRenderer spr;
 
@@ -18,9 +18,12 @@ public class Janitor3D : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rg = this.GetComponent<Rigidbody>();
-		transform = this.GetComponent<Transform>();
+		//transform = this.GetComponent<Transform>();
 		spr = this.GetComponentInChildren<SpriteRenderer>();
-	}
+
+        
+        
+    }
 	
 	void Update () {
 		inputMove.x = Input.GetAxis("Horizontal");
@@ -30,19 +33,20 @@ public class Janitor3D : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(inputMove != Vector3.zero){
-			//rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
-			rg.velocity = velocity;
-			if(Input.GetAxis("Horizontal") < 0)
-				spr.flipX = true;
-			else if(Input.GetAxis("Horizontal") > 0)
-				spr.flipX = false;
-		}
+        if (inputMove != Vector3.zero)
+        {
+            //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
+            rg.velocity = velocity;
+            if (Input.GetAxis("Horizontal") < 0)
+                this.transform.localScale = new Vector3(-1, 1, 1);
+            else if (Input.GetAxis("Horizontal") > 0)
+                this.transform.localScale = new Vector3(1, 1, 1);
+        }
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		print("I HIT OTHER");
+		//print("I HIT OTHER");
 		if (other.gameObject.tag.Equals("SlimeTrail")){
 			Destroy(other.gameObject);
 		}

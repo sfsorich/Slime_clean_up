@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - SlimeTrail
+  - Janitor
+  - Slime
+  - Brush
+  - Painter
   layers:
   - Default
   - TransparentFX
