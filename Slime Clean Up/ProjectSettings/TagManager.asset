@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - SlimeTrail
+  - Janitor
+  - Slime
+  - Brush
+  - Painter
+  - SlimeGrate
   layers:
   - Default
   - TransparentFX
@@ -34,8 +39,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - P4 Cam
+  - P3 Cam
   - P2 Cam
   - P1 Cam
   m_SortingLayers:

@@ -19,35 +19,47 @@ public class Slime3D : MonoBehaviour {
 	private bool onSlime = false;
 	[SerializeField]
 	private int moveCount = 0;
-
+	private string axisH, axisV;
 	// Use this for initialization
 	void Start () {
 		rg = this.GetComponent<Rigidbody>();
 		transform = this.GetComponent<Transform>();
 		spr = this.GetComponentInChildren<SpriteRenderer>();
+
+		string name = this.name;
+		switch(name){
+			case "SlimeG":
+				axisH = "Horizontal2";
+				axisV = "Vertical2";
+				break;
+			case "SlimeR":
+				axisH = "Horizontal3";
+				axisV = "Vertical3";
+				break;
+			case "SlimeB":
+				axisH = "Horizontal4";
+				axisV = "Vertical4";
+				break;
+		}
 	}
 	
 	void Update () {
-		inputMove.x = Input.GetAxis("Horizontal2");
-		inputMove.z = Input.GetAxis("Vertical2");
+		inputMove.x = Input.GetAxis(axisH);
+		inputMove.z = Input.GetAxis(axisV);
 
 		velocity = Vector3.ClampMagnitude(inputMove, 1.0f) * speed;
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(inputMove != Vector3.zero){
-			//rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
-			rg.velocity = velocity;
-			if(Input.GetAxis("Horizontal2") > 0)
-				spr.flipX = true;
-			else if (Input.GetAxis("Horizontal2") < 0)
-				spr.flipX = false;
-			++moveCount;
-		}
-		if (moveCount > 10 && onSlime == false){
-			Instantiate(slime, this.transform.position - 0.1f*velocity - new Vector3(0,  0.2f, 0), Quaternion.Euler(90f, 0f ,0f));
-			moveCount = 0;
-		}
+        if (inputMove != Vector3.zero)
+        {
+            //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
+            rg.AddForce(velocity, ForceMode.Force);
+            if (Input.GetAxis("Horizontal2") < 0)
+                spr.flipX = false;
+            else if (Input.GetAxis("Horizontal2") > 0)
+                spr.flipX = true;
+        }
 	}
 
 	/// <summary>
@@ -55,9 +67,7 @@ public class Slime3D : MonoBehaviour {
 	/// </summary>
 	/// <param name="other">The other Collider involved in this collision.</param>
 	void OnTriggerExit(Collider other) {
-		if (other.tag.Equals("SlimeTrail")){
-			onSlime = false;
-		}
+
 	}
 
 	/// <summary>
@@ -67,8 +77,18 @@ public class Slime3D : MonoBehaviour {
 	/// <param name="other">The other Collider involved in this collision.</param>
 	void OnTriggerStay(Collider other)
 	{
-		if (other.tag.Equals("SlimeTrail")){
-			onSlime = true;
+
+	}
+
+	 /// <summary>
+	/// OnCollisionEnter is called when this collider/rigidbody has begun
+	/// touching another rigidbody/collider.
+	/// </summary>
+	/// <param name="other">The Collision data associated with this collision.</param>
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "SlimeGrate"){
+			Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
 		}
 	}
 }
