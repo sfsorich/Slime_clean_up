@@ -5,9 +5,11 @@ using UnityEngine;
 public class Janitor3D : MonoBehaviour {
 
 	private Rigidbody rg;
-	private Transform transform;
+	//private Transform transform;
 	private Sprite sprite;
 	private SpriteRenderer spr;
+	private ParticleSystem dustTrail;
+	private ParticleSystem dustStart;
 
 	[SerializeField]
 	public float speed;
@@ -18,9 +20,11 @@ public class Janitor3D : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rg = this.GetComponent<Rigidbody>();
-		transform = this.GetComponent<Transform>();
+		//transform = this.GetComponent<Transform>();
 		spr = this.GetComponentInChildren<SpriteRenderer>();
-	}
+		dustTrail = this.GetComponentsInChildren<ParticleSystem>()[0];
+		dustStart = this.GetComponentsInChildren<ParticleSystem>()[1];
+    }
 	
 	void Update () {
 		inputMove.x = Input.GetAxis("Horizontal");
@@ -30,21 +34,37 @@ public class Janitor3D : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(inputMove != Vector3.zero){
-			//rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
-			rg.velocity = velocity;
-			if(Input.GetAxis("Horizontal") < 0)
-				spr.flipX = true;
-			else if(Input.GetAxis("Horizontal") > 0)
-				spr.flipX = false;
-		}
+        if (inputMove != Vector3.zero)
+        {
+			if (dustTrail.isStopped){
+				dustTrail.Play();
+				dustStart.Play();
+			}
+            //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
+            rg.velocity = velocity;
+            if (Input.GetAxis("Horizontal") < 0){
+                spr.flipX = true;
+				dustTrail.transform.rotation = Quaternion.Euler(0, 180f, 0);
+			}
+            else if (Input.GetAxis("Horizontal") > 0){
+                spr.flipX = false;
+				dustTrail.transform.rotation = Quaternion.Euler(0, 0, 0);
+			}
+        } 
 	}
 
+	/// <summary>
+	/// LateUpdate is called every frame, if the Behaviour is enabled.
+	/// It is called after all Update functions have been called.
+	/// </summary>
+	void LateUpdate()
+	{
+		if (rg.velocity.magnitude < 0.25){
+			dustTrail.Stop();
+		}
+	}
 	void OnTriggerEnter(Collider other)
 	{
-		print("I HIT OTHER");
-		if (other.gameObject.tag.Equals("SlimeTrail")){
-			Destroy(other.gameObject);
-		}
+		
 	}
 }
