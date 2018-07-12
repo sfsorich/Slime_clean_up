@@ -21,22 +21,14 @@ MonoBehaviour:
   - pbShadowCastingMode
   - pbDefaultStaticFlags
   - pbVertexColorTool
-  - pbDefaultEditLevel
-  - pbDefaultSelectionMode
-  - pb_GIWorkflowMode
-  - pbHandleAlignment
-  m_Float_keys:
-  - pbEditorScroll.x
-  - pbEditorScroll.y
+  m_Float_keys: []
   m_String_keys:
   - pb_VertexColorPalette::lastAssignedColorPalette
   m_Color_keys: []
   m_Material_keys: []
   m_Bool_values: 01000001
   m_Int_values: 0200000002000000000000000000000000000000010000000100000000000000
-  m_Float_values:
-  - 0
-  - 0
+  m_Float_values: []
   m_String_values:
   - Assets/ProBuilder Data/Default Color Palette.asset
   m_Color_values: []

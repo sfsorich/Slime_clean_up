@@ -8,6 +8,8 @@ public class Janitor3D : MonoBehaviour {
 	//private Transform transform;
 	private Sprite sprite;
 	private SpriteRenderer spr;
+	[SerializeField]
+	private Transform janitorVaccum;
 	private ParticleSystem dustTrail;
 	private ParticleSystem dustStart;
 
@@ -24,6 +26,7 @@ public class Janitor3D : MonoBehaviour {
 		spr = this.GetComponentInChildren<SpriteRenderer>();
 		dustTrail = this.GetComponentsInChildren<ParticleSystem>()[0];
 		dustStart = this.GetComponentsInChildren<ParticleSystem>()[1];
+		janitorVaccum = this.GetComponentsInChildren<Transform>()[3];
     }
 	
 	void Update () {
@@ -42,12 +45,13 @@ public class Janitor3D : MonoBehaviour {
 			}
             //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
             rg.velocity = velocity;
+			janitorVaccum.rotation = Quaternion.FromToRotation(transform.right, inputMove);
             if (Input.GetAxis("Horizontal") < 0){
-                spr.flipX = true;
+				spr.flipX = true;
 				dustTrail.transform.rotation = Quaternion.Euler(0, 180f, 0);
 			}
             else if (Input.GetAxis("Horizontal") > 0){
-                spr.flipX = false;
+				spr.flipX = false;
 				dustTrail.transform.rotation = Quaternion.Euler(0, 0, 0);
 			}
         } 

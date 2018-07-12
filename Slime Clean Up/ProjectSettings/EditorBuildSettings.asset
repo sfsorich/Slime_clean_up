@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SlimeGrates.unity
     guid: b7ad7f7f6d6b81144a8611c1175e07cc
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: 7876a1b27e461e640a937de37d3ddcd0
+  - enabled: 1
+    path: Assets/Scenes/SlimeGrates.unity
+    guid: b7ad7f7f6d6b81144a8611c1175e07cc
   m_configObjects: {}

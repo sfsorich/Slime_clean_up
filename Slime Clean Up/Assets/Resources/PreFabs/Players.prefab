@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 54243407141983508}
   - component: {fileID: 136888976151993286}
   - component: {fileID: 114946732978774580}
+  - component: {fileID: 95791835251165456}
   m_Layer: 8
   m_Name: SlimeG
   m_TagString: Slime
@@ -462,7 +463,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533549077188052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: -1.56}
+  m_LocalPosition: {x: 0.07999998, y: 0, z: -1.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4802921108474494}
@@ -591,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690924895443392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.29, y: 0, z: -1.56}
+  m_LocalPosition: {x: -2.92, y: 0, z: -1.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4770438264987964}
@@ -790,7 +791,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690924895443392}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.25
   m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -876,6 +877,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.62, y: 1, z: 0.57}
   m_Center: {x: 0, y: 0, z: 0.14}
+--- !u!95 &95791835251165456
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690924895443392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5104c865857980c46b6a8528ac75e29d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!96 &96150232985650064
 TrailRenderer:
   serializedVersion: 2
@@ -1247,9 +1266,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   inputMove: {x: 0, y: 0, z: 0}
-  slime: {fileID: 0}
+  animscaleMax: 0.2
+  animscaleMin: 0.16
+  scale: {x: 0, y: 0, z: 0}
   onSlime: 0
-  moveCount: 0
+  axisH: 
+  axisV: 
 --- !u!114 &114774673845137414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1263,9 +1285,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   inputMove: {x: 0, y: 0, z: 0}
-  slime: {fileID: 0}
+  animscaleMax: 0.23
+  animscaleMin: 0.22
+  scale: {x: 0, y: 0, z: 0}
   onSlime: 0
-  moveCount: 0
+  axisH: 
+  axisV: 
 --- !u!114 &114946732978774580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1277,11 +1302,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85173676ad04c0a4e8042381f2aa2157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
   inputMove: {x: 0, y: 0, z: 0}
-  slime: {fileID: 0}
+  animscaleMax: 0.195
+  animscaleMin: 0.18
+  scale: {x: 0, y: 0, z: 0}
   onSlime: 0
-  moveCount: 0
+  axisH: 
+  axisV: 
 --- !u!114 &114991626331594382
 MonoBehaviour:
   m_ObjectHideFlags: 1

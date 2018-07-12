@@ -10,6 +10,12 @@ TagManager:
   - Brush
   - Painter
   - SlimeGrate
+  - Janitor
+  - Slime
+  - Brush
+  - Painter
+  - SlimeGrate
+  - JanitorVacuum
   layers:
   - Default
   - TransparentFX
@@ -41,8 +47,8 @@ TagManager:
   - 
   - P4 Cam
   - P3 Cam
-  - P2 Cam
-  - P1 Cam
+  - P4 Cam
+  - P3 Cam
   m_SortingLayers:
   - name: Default
     uniqueID: 0

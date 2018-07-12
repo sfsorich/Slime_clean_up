@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class Slime3D : MonoBehaviour {
 	private Rigidbody rg;
-	private Transform transform;
-	private Sprite sprite;
 	private SpriteRenderer spr;
 
 	[SerializeField]
 	public float speed;
 	private Vector3 velocity;
+
 	[SerializeField]
 	private Vector3 inputMove = Vector3.zero;
-	public Transform slime;
 
 	[SerializeField]
 	private bool onSlime = false;
 	[SerializeField]
-	private int moveCount = 0;
 	private string axisH, axisV;
 	// Use this for initialization
 	void Start () {
 		rg = this.GetComponent<Rigidbody>();
-		transform = this.GetComponent<Transform>();
 		spr = this.GetComponentInChildren<SpriteRenderer>();
 
 		string name = this.name;
@@ -41,6 +37,7 @@ public class Slime3D : MonoBehaviour {
 				axisV = "Vertical4";
 				break;
 		}
+
 	}
 	
 	void Update () {
@@ -49,21 +46,23 @@ public class Slime3D : MonoBehaviour {
 
 		velocity = Vector3.ClampMagnitude(inputMove, 1.0f) * speed;
 	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
         if (inputMove != Vector3.zero)
         {
             //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
             rg.AddForce(velocity, ForceMode.Force);
-            if (Input.GetAxis("Horizontal2") < 0)
+            if (Input.GetAxis("Horizontal2") < 0) {
                 spr.flipX = false;
-            else if (Input.GetAxis("Horizontal2") > 0)
+			} else if (Input.GetAxis("Horizontal2") > 0) {
                 spr.flipX = true;
-        }
+			}
+		}
 	}
 
 	/// <summary>
-	/// OnTriggerExit is called when the Collider other has stopped touching the trigger.
+	/// OnTriggerExit is called when the Collider other has stopped touching the trigdsger.
 	/// </summary>
 	/// <param name="other">The other Collider involved in this collision.</param>
 	void OnTriggerExit(Collider other) {
@@ -77,7 +76,12 @@ public class Slime3D : MonoBehaviour {
 	/// <param name="other">The other Collider involved in this collision.</param>
 	void OnTriggerStay(Collider other)
 	{
-
+		if (other.tag == "JanitorVacuum"){
+			float dist = Vector3.Distance(this.transform.position, other.gameObject.GetComponentInParent<Transform>().position);
+			Vector3 dir = other.GetComponentInParent<Transform>().position - this.transform.position;
+			print(other.gameObject.name);
+			rg.AddForce(dir  * (3/ Mathf.Pow(dist, 2))  , ForceMode.Force);
+		}
 	}
 
 	 /// <summary>
