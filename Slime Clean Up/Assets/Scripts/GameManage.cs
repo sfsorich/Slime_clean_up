@@ -26,7 +26,7 @@ public class GameManage : MonoBehaviour {
 
     void EndGame(){
         countDownText.enabled = false;
-        GameObject.Find("Players").SetActive(false);
+        //GameObject.Find("Players").SetActive(false);
         endUI.SetActive(true);
         //Time.timeScale = 0;
     }

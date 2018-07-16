@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime3D : MonoBehaviour {
+public class Slime3D : MonoBehaviour 
+{
 	private Rigidbody rg;
 	private SpriteRenderer spr;
 
@@ -14,16 +15,24 @@ public class Slime3D : MonoBehaviour {
 	private Vector3 inputMove = Vector3.zero;
 
 	[SerializeField]
-	private bool onSlime = false;
-	[SerializeField]
 	private string axisH, axisV;
+
+
+	[SerializeField]
+	private bool isAbducted;
+	private Transform offset;
+	[SerializeField]
+	private bool onSlime = false;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		rg = this.GetComponent<Rigidbody>();
 		spr = this.GetComponentInChildren<SpriteRenderer>();
 
 		string name = this.name;
-		switch(name){
+		switch(name)
+		{
 			case "SlimeG":
 				axisH = "Horizontal2";
 				axisV = "Vertical2";
@@ -40,7 +49,8 @@ public class Slime3D : MonoBehaviour {
 
 	}
 	
-	void Update () {
+	void Update () 
+	{
 		inputMove.x = Input.GetAxis(axisH);
 		inputMove.z = Input.GetAxis(axisV);
 
@@ -48,16 +58,38 @@ public class Slime3D : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
-        if (inputMove != Vector3.zero)
-        {
-            //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
-            rg.AddForce(velocity, ForceMode.Force);
-            if (Input.GetAxis("Horizontal2") < 0) {
-                spr.flipX = false;
-			} else if (Input.GetAxis("Horizontal2") > 0) {
-                spr.flipX = true;
+	void FixedUpdate () 
+	{
+		if (!isAbducted)
+		{
+			if (inputMove != Vector3.zero)
+			{
+				//rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
+				rg.AddForce(velocity, ForceMode.Force);
+				if (Input.GetAxis("Horizontal2") < 0) 
+				{
+					spr.flipX = false;
+				} 
+				else if (Input.GetAxis("Horizontal2") > 0)
+				{
+					spr.flipX = true;
+				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// LateUpdate is called every frame, if the Behaviour is enabled.
+	/// It is called after all Update functions have been called.
+	/// </summary>
+	void LateUpdate()
+	{
+		if (isAbducted)
+		{
+			this.GetComponent<CapsuleCollider>().enabled = false;
+			this.GetComponentInChildren<SpawnTrail>().enabled = false;
+			this.transform.position = offset.position;
+	
 		}
 	}
 
@@ -65,7 +97,8 @@ public class Slime3D : MonoBehaviour {
 	/// OnTriggerExit is called when the Collider other has stopped touching the trigdsger.
 	/// </summary>
 	/// <param name="other">The other Collider involved in this collision.</param>
-	void OnTriggerExit(Collider other) {
+	void OnTriggerExit(Collider other) 
+	{
 
 	}
 
@@ -79,7 +112,6 @@ public class Slime3D : MonoBehaviour {
 		if (other.tag == "JanitorVacuum"){
 			float dist = Vector3.Distance(this.transform.position, other.gameObject.GetComponentInParent<Transform>().position);
 			Vector3 dir = other.GetComponentInParent<Transform>().position - this.transform.position;
-			print(other.gameObject.name);
 			rg.AddForce(dir  * (3/ Mathf.Pow(dist, 2))  , ForceMode.Force);
 		}
 	}
@@ -91,8 +123,17 @@ public class Slime3D : MonoBehaviour {
 	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.tag == "SlimeGrate"){
+		if (other.gameObject.tag == "SlimeGrate")
+		{
 			Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+		}
+		if (other.gameObject.tag == "Janitor")
+		{
+			if(other.gameObject.GetComponentInParent<Janitor3D>().isVacuuming)
+			{
+				isAbducted = true;
+				offset = GameObject.Find("Janitor Backpack").transform;
+			}
 		}
 	}
 }
