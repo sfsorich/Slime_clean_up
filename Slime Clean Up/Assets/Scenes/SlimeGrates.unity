@@ -16591,6 +16591,7 @@ GameObject:
   - component: {fileID: 975593150}
   - component: {fileID: 975593149}
   - component: {fileID: 975593148}
+  - component: {fileID: 975593152}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: ShowOnPause
@@ -16674,6 +16675,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &975593152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975593147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e441317b3f1a644ac2aba95eebae85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 2015375316}
+  selectedObject: {fileID: 551239040}
 --- !u!1 &999855308
 GameObject:
   m_ObjectHideFlags: 0
