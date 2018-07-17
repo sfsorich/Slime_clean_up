@@ -6,6 +6,7 @@ public class DeleteBrush : MonoBehaviour
 {
     public bool touched = false;
     public float size = 1;
+    public float val = 1;
     private float t = 0;
     private Transform sprite;
 
@@ -14,6 +15,7 @@ public class DeleteBrush : MonoBehaviour
 
         sprite = this.transform.GetChild(0);
         sprite.localScale *= 0.5f;
+
     }
 
     public void Kill(){
@@ -22,11 +24,12 @@ public class DeleteBrush : MonoBehaviour
 
     IEnumerator KillCo(){
         for (int i = 10; i > 0; i--){
-            this.transform.localScale *= 0.75f;
+            this.transform.localScale *= 0.5f;
             yield return new WaitForEndOfFrame();
         }
         Destroy(this.gameObject);
     }
+
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Painter")
@@ -38,22 +41,29 @@ public class DeleteBrush : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Brush")
+        if (touched && other.tag == "Brush")
         {
-            print("isbrush");
-            float othrSize = other.GetComponent<DeleteBrush>().size;
-            if (othrSize <= size)
+            if (!other.GetComponent<DeleteBrush>().touched)
             {
-                print("Size If");
-                size += othrSize;
                 Destroy(other.gameObject);
             }
+            
         }
     }
 
     private void Update()
     {
-        t += Time.deltaTime;
-        sprite.localScale = Vector3.Lerp(sprite.localScale, new Vector3(size, size, size), t);
+        //t += Time.deltaTime;
+        sprite.localScale = Vector3.Lerp(sprite.localScale, new Vector3(size, size, size), 0.025f);
+
+        if (size <= 0.1) {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void UpdateSize(float s)
+    {
+        size = s;
+        this.GetComponent<CapsuleCollider>().radius = size / 5;
     }
 }

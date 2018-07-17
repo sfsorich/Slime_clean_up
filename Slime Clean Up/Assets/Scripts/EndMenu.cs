@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EndMenu : MonoBehaviour {
 
-	private int numSlimeG;
+	private float numSlimeG;
 	private int numSlimeR;
 	private int numSlimeB;
 
@@ -26,7 +26,11 @@ public class EndMenu : MonoBehaviour {
 	/// </summary>
 	void OnEnable()
 	{
-		numSlimeG = GameObject.FindGameObjectsWithTag("Brush").Length;
+		numSlimeG = 0;
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Brush"))
+        {
+            numSlimeG += g.GetComponent<DeleteBrush>().val;
+        }
 		numSlimeText = this.GetComponentInChildren<Text>();
 		StartCoroutine(CountSlimes());
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManage : MonoBehaviour {
-    public int currentSeconds = 180;
+    public int currentSeconds = 60;
 
     private Canvas UI;
     private Text countDownText;

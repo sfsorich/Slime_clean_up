@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 65328414779050876}
   - component: {fileID: 114532321648401686}
   m_Layer: 0
-  m_Name: Painter
+  m_Name: Vacuum
   m_TagString: Painter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

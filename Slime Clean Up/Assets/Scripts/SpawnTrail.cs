@@ -5,33 +5,30 @@ using UnityEngine;
 public class SpawnTrail : MonoBehaviour {
     [SerializeField]
     private GameObject brush;
-    private List<GameObject> contacts;
+    public List<GameObject> contacts;
+    public Transform slimeParent;
+    public Color colr;
 
     [SerializeField]
-    //private Color colr;
     private Collider last;
     public bool red;
     public bool green;
     public bool yellow;
     public bool blue;
 
+    public float size = 1;
+    public float val = 1;
+
+    public bool working = true;
+
     private void Start()
     {
-        if(red)
-            brush = Resources.Load("Brush R") as GameObject;
-        if (green)
-            brush = Resources.Load("Brush G") as GameObject;
-        if (yellow)
-            brush = Resources.Load("Brush Y") as GameObject;
-        if (blue)
-            brush = Resources.Load("Brush B") as GameObject;
+        brush = Instantiate<GameObject>(Resources.Load<GameObject>("Brush G"), this.transform);
+        brush.SetActive(false);
+
+        slimeParent = GameObject.Find("FloorSlime").transform;
 
         contacts = new List<GameObject>();
-
-        brush.GetComponentInChildren<SpriteRenderer>().color = this.transform.parent.GetComponentInChildren<SpriteRenderer>().color;
-        GameObject b = Instantiate<GameObject>(brush, this.transform);
-        b.transform.parent = null;
-        last = b.GetComponent<Collider>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,10 +38,10 @@ public class SpawnTrail : MonoBehaviour {
             contacts.Add(other.gameObject);
         }
 
-        if (other.tag == "Brush")
+        if (other.tag == "Brush" && working)
         {
-            if(other.GetComponent<DeleteBrush>().touched)
-                Destroy(other.gameObject);
+            if (other.GetComponent<DeleteBrush>().touched)
+                StartCoroutine(ShrinkDie(other.gameObject));
         }
     }
 
@@ -55,35 +52,74 @@ public class SpawnTrail : MonoBehaviour {
             contacts.Remove(other.gameObject);
         }
 
-        if (other.tag == "Brush")
-        {
+        //if (other.tag == "Brush")
+        //{
             //Destroy(other.gameObject);
             //GameObject b = Instantiate<GameObject>(brush, this.transform);
             //b.transform.parent = null;
             //last = b.GetComponent<Collider>();
             //Destroy(other);
-        }
+        //}
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!contacts.Contains(last.gameObject))
+        if (last != null && !contacts.Contains(last.gameObject) && working)
         {
             GameObject b = Instantiate<GameObject>(brush, this.transform);
-            b.transform.parent = null;
+            b.transform.parent = slimeParent;
             last = b.GetComponent<Collider>();
+            b.GetComponent<DeleteBrush>().UpdateSize(size);
+            b.GetComponent<DeleteBrush>().val = val;
+            b.SetActive(true);
         }
+
+        
     }
 
     private void Update()
     {
-        //colr = brush.GetComponentInChildren<SpriteRenderer>().color;
-        if(last == null)
+        brush.GetComponentInChildren<SpriteRenderer>().color = colr;
+        contacts.RemoveAll(GameObject => GameObject == null);
+        
+        if (last == null && working)
         {
             GameObject b = Instantiate<GameObject>(brush, this.transform);
-            b.transform.parent = null;
+            b.transform.parent = slimeParent;
             last = b.GetComponent<Collider>();
+            b.GetComponent<DeleteBrush>().UpdateSize(size);
+            b.GetComponent<DeleteBrush>().val = val;
+            b.SetActive(true);
         }
         //print(last.name);
+    }
+
+    private IEnumerator ShrinkDie(GameObject o)
+    {
+        //o.GetComponent<Collider>().enabled = false;
+        //contacts.Remove(o);
+        //GameObject b = Instantiate<GameObject>(brush, o.transform);
+        //b.transform.parent = slimeParent;
+        //last = b.GetComponent<Collider>();
+        //b.GetComponent<DeleteBrush>().size = size;
+
+        //for (int i = 0; i < 60; i++)
+        //{
+        //  o.transform.localScale = Vector3.Lerp(o.transform.localScale, Vector3.zero, 0.15f);
+        //
+        //yield return new WaitForEndOfFrame();
+        //}
+
+        //Destroy(o);
+
+        o.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(o.GetComponentInChildren<SpriteRenderer>().color, colr, 0.5f);
+
+        if(o.GetComponent<DeleteBrush>().size < size)
+        {
+            o.GetComponent<DeleteBrush>().UpdateSize(size);
+        }
+        
+
+        yield return new WaitForEndOfFrame();
     }
 }
