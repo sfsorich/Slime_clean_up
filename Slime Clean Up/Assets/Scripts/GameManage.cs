@@ -20,21 +20,25 @@ public class GameManage : MonoBehaviour {
         CountDown();
     }
 
-    void CountDown(){
+    void CountDown()
+    {
         StartCoroutine(CountDownCo());
     }
 
-    void EndGame(){
+    void EndGame()
+    {
         countDownText.enabled = false;
-        //GameObject.Find("Players").SetActive(false);
         endUI.SetActive(true);
-        //Time.timeScale = 0;
     }
-    IEnumerator CountDownCo(){
-        while (currentSeconds > 0){
+
+    IEnumerator CountDownCo()
+    {
+        while (currentSeconds > 0)
+        {
             currentSeconds -= 1;
 
-            if(currentSeconds < 6){
+            if(currentSeconds < 6)
+            {
                 countDownText.fontSize = Mathf.CeilToInt(countDownText.fontSize * 1.25f);
                 countDownText.color = Color.red;
             }
@@ -43,6 +47,4 @@ public class GameManage : MonoBehaviour {
         }
         EndGame();
     }
-
-
 }

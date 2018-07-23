@@ -54,7 +54,7 @@ public class DeleteBrush : MonoBehaviour
     private void Update()
     {
         //t += Time.deltaTime;
-        sprite.localScale = Vector3.Lerp(sprite.localScale, new Vector3(size, size, size), 0.025f);
+        sprite.localScale = Vector3.Lerp(sprite.localScale, new Vector3(size, size, size), 0.05f);
 
         if (size <= 0.1) {
             Destroy(this.gameObject);

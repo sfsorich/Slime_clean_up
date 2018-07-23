@@ -17,8 +17,8 @@ public class CleanTrail : MonoBehaviour
     {
         if (other.tag == "Brush")
         {
-            other.GetComponent<DeleteBrush>().size -= 0.1f;
-            other.transform.position = Vector3.Lerp(other.transform.position, this.transform.position, 0.05f);
+            other.GetComponent<DeleteBrush>().size -= 0.25f;
+            other.transform.position = Vector3.Lerp(other.transform.position, this.transform.position, 0.075f);
         }
     }
 
