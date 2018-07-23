@@ -20,15 +20,15 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         //uses the p button to pause and unpause the game
-        if (Input.GetKeyDown(KeyCode.Escape))//not sure if these will work with controllers but keeping || Input.GetButtonDown("Start") || Input.GetButtonDown("Start_2")
+        if ( (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) && !GameManage.endBool )//not sure if these will work with controllers but keeping || Input.GetButtonDown("Start") || Input.GetButtonDown("Start_2")
         {
-            pauseControl();
+            PauseControl();
         }
         
     }
     //to load or restart a scene use LoadSceneOnClick
     //controls the pausing of the scene
-    public void pauseControl()
+    public void PauseControl()
     {
         if (Time.timeScale == 1)
         {
@@ -59,6 +59,6 @@ public class UIManager : MonoBehaviour
             g.SetActive(false);
         }
         Debug.Log("hiding cursor");
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 }

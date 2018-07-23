@@ -29,6 +29,7 @@ public class SpawnTrail : MonoBehaviour {
         slimeParent = GameObject.Find("FloorSlime").transform;
 
         contacts = new List<GameObject>();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,7 +65,7 @@ public class SpawnTrail : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (last != null && !contacts.Contains(last.gameObject) && working)
+        /*if (last != null && !contacts.Contains(last.gameObject) && working)
         {
             GameObject b = Instantiate<GameObject>(brush, this.transform);
             b.transform.parent = slimeParent;
@@ -72,7 +73,7 @@ public class SpawnTrail : MonoBehaviour {
             b.GetComponent<DeleteBrush>().UpdateSize(size);
             b.GetComponent<DeleteBrush>().val = val;
             b.SetActive(true);
-        }
+        }*/
 
         
     }
@@ -82,7 +83,7 @@ public class SpawnTrail : MonoBehaviour {
         brush.GetComponentInChildren<SpriteRenderer>().color = colr;
         contacts.RemoveAll(GameObject => GameObject == null);
         
-        if (last == null && working)
+        if ((last == null && working) || (last != null && !contacts.Contains(last.gameObject) && working))
         {
             GameObject b = Instantiate<GameObject>(brush, this.transform);
             b.transform.parent = slimeParent;

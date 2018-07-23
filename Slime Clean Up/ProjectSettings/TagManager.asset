@@ -16,6 +16,8 @@ TagManager:
   - Painter
   - SlimeGrate
   - JanitorVacuum
+  - ShowOnPause
+  - SlimeDeposit
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ public class EndMenu : MonoBehaviour {
 	private int numSlimeB;
 
 	private Text numSlimeText;
-
+	private Text winnerText;
 
 	// Use this for initialization
 	void Awake () {
@@ -32,15 +32,43 @@ public class EndMenu : MonoBehaviour {
             numSlimeG += g.GetComponent<DeleteBrush>().val;
         }
 		numSlimeText = this.GetComponentInChildren<Text>();
+		winnerText = this.GetComponentsInChildren<Text>()[1];
+		winnerText.text = " ";
 		StartCoroutine(CountSlimes());
 	}
 
 	IEnumerator CountSlimes(){
-		for(float i = 0; i < 2f; i+=0.01f){
-			//numSlimeText.text = i.ToString();
-			//numSlimeText.text = Mathf.CeilToInt(Mathf.Lerp(0, numSlimeG, i)).ToString();
-			numSlimeText.text = Mathf.CeilToInt(Easing.QuintEaseOut(i, 0, numSlimeG, 2)).ToString();
-			yield return new WaitForSeconds(0.01f);
+		for(float i = 0; i < 2f; i+=0.01f)
+		{
+			numSlimeText.text = Mathf.CeilToInt(Easing.QuintEaseOut(i, 0, numSlimeG, 2f)).ToString();
+			yield return new WaitForSecondsRealtime(0.01f);
+			if (numSlimeText.text == numSlimeG.ToString())
+			{
+				break;
+			}
+		}
+
+		for (int i = 0; i < 30; i+=1)
+		{
+			if ( i % 2 == 0) 
+			{
+				winnerText.text = "JANITOR";
+			}
+			else
+			{
+				winnerText.text = "SLIMES";
+			}
+			
+			yield return new WaitForSecondsRealtime(0.1f);
+		}
+
+		if (numSlimeG < GameManage.winAmount)
+		{
+			winnerText.text = "JANITOR";
+		}
+		else
+		{
+			winnerText.text = "SLIMES";
 		}
 	}
 }
