@@ -32,7 +32,7 @@ public class Slime3D : MonoBehaviour {
 	[SerializeField]
 	private bool onSlime = false;
 	[SerializeField]
-	private string axisH, axisV;
+	private string axisH, axisV, jump;
     private int jumping = 0;
 	private int height = 0;
 
@@ -53,16 +53,19 @@ public class Slime3D : MonoBehaviour {
 			case "SlimeG":
 				axisH = "Horizontal2";
 				axisV = "Vertical2";
+                jump = "Jump2";
                 priority = 1;
 				break;
 			case "SlimeR":
 				axisH = "Horizontal3";
 				axisV = "Vertical3";
+                jump = "Jump3";
                 priority = 2;
                 break;
 			case "SlimeB":
 				axisH = "Horizontal4";
 				axisV = "Vertical4";
+                jump = "Jump4";
                 priority = 3;
                 break;
 		}
@@ -82,7 +85,7 @@ public class Slime3D : MonoBehaviour {
 		inputMove.x = Input.GetAxis(axisH);
 		inputMove.z = Input.GetAxis(axisV);
 
-		if (Input.GetButton("Jump"))
+		if (Input.GetButton(jump) && !merged)
 		{
 			this.GetComponent<Rigidbody>().drag = 5;
 			float scaleX = this.transform.localScale.x + (inputMove.x != 0 ? .01f : 0);
@@ -106,7 +109,7 @@ public class Slime3D : MonoBehaviour {
 			jumping++;
 			this.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
 		}
-		if (Input.GetButtonUp("Jump"))
+		if (Input.GetButtonUp(jump) && !merged)
 		{
 			this.transform.localScale = new Vector3(1, 1, 1);
 			this.GetComponent<Rigidbody>().drag = 0.5f;
@@ -302,7 +305,7 @@ public class Slime3D : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Slime" && !merged && !isAbducted && !justUnMerged)
+        if(other.tag == "Slime" && !merged && !isAbducted && !justUnMerged && !other.GetComponent<Slime3D>().merged)
         {
             if(this.priority < other.GetComponent<Slime3D>().priority)
             {

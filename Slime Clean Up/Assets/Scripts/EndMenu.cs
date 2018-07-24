@@ -62,7 +62,7 @@ public class EndMenu : MonoBehaviour {
 			yield return new WaitForSecondsRealtime(0.1f);
 		}
 
-		if (numSlimeG < GameManage.winAmount)
+		if (numSlimeG < GameObject.FindObjectOfType<GameManage>().winAmount)
 		{
 			winnerText.text = "JANITOR";
 		}

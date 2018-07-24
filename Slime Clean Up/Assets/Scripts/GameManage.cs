@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManage : MonoBehaviour {
     public int currentSeconds = 60;
-    public static int winAmount = 250;
+    public int winAmount = 250;
     public static bool endBool = false;
 
     private Canvas UI;
@@ -25,7 +25,7 @@ public class GameManage : MonoBehaviour {
         progressBar = UI.GetComponentInChildren<Slider>();
         endUI = Resources.FindObjectsOfTypeAll<EndMenu>()[0].gameObject;
         endUI.SetActive(false);
-
+        endBool = false;
         CountDown();
     }
 

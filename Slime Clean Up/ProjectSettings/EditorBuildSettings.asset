@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 7876a1b27e461e640a937de37d3ddcd0
   - enabled: 1
-    path: Assets/Scenes/SlimeGrates.unity
-    guid: b7ad7f7f6d6b81144a8611c1175e07cc
+    path: Assets/Scenes/SlimeGrates 2P.unity
+    guid: d8ff2bc1e1bc7bf45bf395a7ea462f8e
+  - enabled: 1
+    path: Assets/Scenes/SlimeGrates 3P 1 Jan.unity
+    guid: a366c028db8c78844bcd2d83e336127e
+  - enabled: 1
+    path: Assets/Scenes/SlimeGrates 4P 1 Jan.unity
+    guid: 883cce6839c547646af5c7cd8501706e
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 7876a1b27e461e640a937de37d3ddcd0

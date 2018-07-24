@@ -59,7 +59,7 @@ public class SlimeDeposit : MonoBehaviour {
 
 		foreach (Slime3D item in mySlimes)
 		{
-			item.transform.position = Vector3.MoveTowards(this.origin.position, item.transform.position - this.origin.position, 5f);
+			item.transform.position = Vector3.MoveTowards(this.origin.position, item.transform.position - this.origin.position, 1f);
 			item.Freed();
 		}
 		mySlimes.Clear();
