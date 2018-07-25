@@ -247,7 +247,7 @@ public class Slime3D : MonoBehaviour {
         isAbducted = false;
         this.GetComponent<CapsuleCollider>().enabled = true;
         painter.gameObject.SetActive(true);
-        offset =null;
+        offset = null;
         spr.sortingOrder = 8;
     }
 

@@ -112,7 +112,7 @@ public class SpawnTrail : MonoBehaviour {
         //}
 
         //Destroy(o);
-
+        
         o.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(o.GetComponentInChildren<SpriteRenderer>().color, colr, 0.5f);
 
         if(o.GetComponent<DeleteBrush>().size < size)

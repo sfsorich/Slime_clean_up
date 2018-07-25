@@ -59,10 +59,10 @@ public class SlimeDeposit : MonoBehaviour {
 		loc2Used = false;
 		loc3Used = false;
 
-		foreach (Slime3D item in mySlimes)
+		foreach (Slime3D slime in mySlimes)
 		{
-			item.transform.position = Vector3.MoveTowards(this.origin.position, item.transform.position - this.origin.position, 1f);
-			item.Freed();
+			slime.transform.position = Vector3.MoveTowards(this.origin.position, slime.transform.position - this.origin.position, 1f);
+			slime.Freed();
 		}
 		SoundManager.instance.PlaySingle(escapeSound);
 		mySlimes.Clear();

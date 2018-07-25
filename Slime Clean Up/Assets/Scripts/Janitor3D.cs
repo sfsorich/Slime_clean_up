@@ -20,6 +20,7 @@ public class Janitor3D : MonoBehaviour {
     private Transform janitorBackpack;
     private float backpackX = 0.309f;
     private Transform janitorVacuum;
+    [SerializeField]
     private Transform painter;
     private Slime3D mySlime = null;
     private ParticleSystem dustTrail;
@@ -46,6 +47,8 @@ public class Janitor3D : MonoBehaviour {
     private Vector3 velocity;
     [SerializeField]
     private Vector3 lastMotion;
+    [SerializeField]
+    private string axisH, axisV, jumpButton, vacuumButton, sprintButton;
 
     // boolean states
     [SerializeField]
@@ -58,13 +61,31 @@ public class Janitor3D : MonoBehaviour {
     // Use this for initialization
     void Start() 
     {
+        string name = this.name;
+		switch(name)
+        {
+			case "Janitor3D":
+				axisH = "Horizontal";
+				axisV = "Vertical";
+                jumpButton = "Jump1";
+                vacuumButton = "Fire1";
+                sprintButton = "Fire3";
+				break;
+			case "Janitor3D 2":
+				axisH = "Horizontal2";
+				axisV = "Vertical2";
+                jumpButton = "Jump2";
+                vacuumButton = "Fire1_2";
+                sprintButton = "Fire3_2";
+				break;
+		}
         rg = this.GetComponent<Rigidbody>();
         col = this.GetComponent<CapsuleCollider>();
         spr = this.GetComponentInChildren<SpriteRenderer>();
         dustTrail = this.GetComponentsInChildren<ParticleSystem>()[0];
         dustStart = this.GetComponentsInChildren<ParticleSystem>()[1];
-        janitorVacuum = GameObject.FindGameObjectWithTag("JanitorVacuum").transform;
         janitorBackpack = this.GetComponentsInChildren<Transform>()[6];
+        janitorVacuum = this.GetComponentsInChildren<Transform>()[7];
         anim = this.GetComponentInChildren<Animator>();
         painter = this.transform.Find("Painter");
     }
@@ -88,11 +109,11 @@ public class Janitor3D : MonoBehaviour {
 
     void GetPlayerInput()
     {
-        inputMove.x = Input.GetAxis("Horizontal");
-        inputMove.z = Input.GetAxis("Vertical");
+        inputMove.x = Input.GetAxis(axisH);
+        inputMove.z = Input.GetAxis(axisV);
 
-        inputVacuum = Input.GetButton("Fire1");
-        inputSprint = Input.GetButton("Fire3");
+        inputVacuum = Input.GetButton(vacuumButton);
+        inputSprint = Input.GetButton(sprintButton);
     }
 
     void UpdateState()
@@ -124,7 +145,7 @@ public class Janitor3D : MonoBehaviour {
 
         if (inputMove != Vector3.zero && !isSprinting)
         {
-            if (Input.GetAxis("Horizontal") < 0)
+            if (Input.GetAxis(axisH) < 0)
             {
 				spr.flipX = false;
 				dustTrail.transform.rotation = Quaternion.Euler(0, 180f, 0);
@@ -132,7 +153,7 @@ public class Janitor3D : MonoBehaviour {
                 painter.localRotation = Quaternion.Euler(0, 180, 0);
                 janitorBackpack.localPosition = new Vector3(backpackX, janitorBackpack.localPosition.y, janitorBackpack.localPosition.z);
 			}
-            else if (Input.GetAxis("Horizontal") > 0)
+            else if (Input.GetAxis(axisH) > 0)
             {
 				spr.flipX = true;
 				dustTrail.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -175,8 +196,14 @@ public class Janitor3D : MonoBehaviour {
 			dustTrail.Stop();
             anim.Play("JanitorIdle");
 		}
-        if (abductedSlime)
+
+        if (abductedSlime || abductTime < 0)
             abductTime += Time.deltaTime;
+
+        if (abductTime > 6f)
+        {
+            FreeSlime();
+        }
 	}
     
     void AbductSlime(Slime3D slime)
@@ -197,6 +224,16 @@ public class Janitor3D : MonoBehaviour {
         SoundManager.instance.PlaySingle(depositSound);
     }
 
+    void FreeSlime()
+    {   
+        mySlime.Freed();
+        mySlime.transform.position = Vector3.MoveTowards(this.transform.position, janitorBackpack.position, 5f);
+        mySlime.rg.AddExplosionForce(100f, this.transform.position, 100f, 0f, ForceMode.Force);
+        mySlime = null;
+        abductedSlime = false;
+        abductTime = -2f;
+    }
+
 	/// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
@@ -215,7 +252,7 @@ public class Janitor3D : MonoBehaviour {
     /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Slime" && isVacuuming && !abductedSlime)
+        if (other.gameObject.tag == "Slime" && isVacuuming && !abductedSlime && abductTime >= 0)
         {
             AbductSlime(other.gameObject.GetComponent<Slime3D>());
         }
