@@ -31,6 +31,11 @@ public class SelectOnInput : MonoBehaviour
         }
     }
 
+    /*private void OnEnable()
+    {
+        buttonSelected = true;
+    }*/
+
     private void OnDisable()
     {
         buttonSelected = false;

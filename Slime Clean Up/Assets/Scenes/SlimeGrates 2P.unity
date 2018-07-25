@@ -10362,17 +10362,16 @@ MonoBehaviour:
   abductSound: {fileID: 8300000, guid: 549e8a916b7d3b548bd62fb529a089b6, type: 3}
   depositSound: {fileID: 8300000, guid: f55ecd5833bf6e340ac66b670bb390a7, type: 3}
   janitorBackpack: {fileID: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  lastMotion: {x: 0, y: 0, z: 0}
   inputMove: {x: 0, y: 0, z: 0}
   abductTime: 0
   crawlSpeed: 2
   walkSpeed: 8
   runSpeed: 20
+  velocity: {x: 0, y: 0, z: 0}
+  lastMotion: {x: 0, y: 0, z: 0}
   isSprinting: 0
   isVacuuming: 0
   abductedSlime: 0
-  facingRight: 0
 --- !u!136 &356644826
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -29300,7 +29299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeconds: 60
-  winAmount: 75
+  winAmount: 100
   fill: 0
   UpdateTime: 0
 --- !u!4 &785241969
@@ -33507,7 +33506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &936536597
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42028,7 +42027,6 @@ GameObject:
   - component: {fileID: 1178071537}
   - component: {fileID: 1178071540}
   - component: {fileID: 1178071536}
-  - component: {fileID: 1178071541}
   m_Layer: 8
   m_Name: SlimeG
   m_TagString: Slime
@@ -42217,17 +42215,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1178071541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1178071535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676fdb225f83a6c44bb7882c9bcaca51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1194808432
 Prefab:
   m_ObjectHideFlags: 0
@@ -64263,7 +64250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 4
-  power: 250
+  power: 200
 --- !u!4 &1897982381
 Transform:
   m_ObjectHideFlags: 0
@@ -68388,6 +68375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bece01e60917a499b096e0d418dae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escapeSound: {fileID: 0}
   loc1: {fileID: 0}
   loc2: {fileID: 0}
   loc3: {fileID: 0}
@@ -70026,7 +70014,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -10367,17 +10367,16 @@ MonoBehaviour:
   abductSound: {fileID: 8300000, guid: 549e8a916b7d3b548bd62fb529a089b6, type: 3}
   depositSound: {fileID: 8300000, guid: f55ecd5833bf6e340ac66b670bb390a7, type: 3}
   janitorBackpack: {fileID: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  lastMotion: {x: 0, y: 0, z: 0}
   inputMove: {x: 0, y: 0, z: 0}
   abductTime: 0
   crawlSpeed: 2
   walkSpeed: 8
   runSpeed: 20
+  velocity: {x: 0, y: 0, z: 0}
+  lastMotion: {x: 0, y: 0, z: 0}
   isSprinting: 0
   isVacuuming: 0
   abductedSlime: 0
-  facingRight: 0
 --- !u!136 &356644826
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -26960,7 +26959,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -42367,7 +42366,6 @@ GameObject:
   - component: {fileID: 1178071537}
   - component: {fileID: 1178071540}
   - component: {fileID: 1178071536}
-  - component: {fileID: 1178071541}
   m_Layer: 8
   m_Name: SlimeG
   m_TagString: Slime
@@ -42556,17 +42554,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1178071541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1178071535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676fdb225f83a6c44bb7882c9bcaca51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1181376467
 Transform:
   m_ObjectHideFlags: 0
@@ -48036,7 +48023,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -65103,7 +65090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 4
-  power: 250
+  power: 200
 --- !u!4 &1897982381
 Transform:
   m_ObjectHideFlags: 0
@@ -69320,6 +69307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bece01e60917a499b096e0d418dae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escapeSound: {fileID: 0}
   loc1: {fileID: 0}
   loc2: {fileID: 0}
   loc3: {fileID: 0}

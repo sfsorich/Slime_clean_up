@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Janitor3D : MonoBehaviour {
 
+    // janitor components
     private Rigidbody rg;
     private CapsuleCollider col;
     private Sprite sprite;
     private SpriteRenderer spr;
     private Animator anim;
 
+    // janitor sounds
     public AudioClip abductSound;
     public AudioClip depositSound;
 
+    // janitor utilities
     [SerializeField]
     private Transform janitorBackpack;
     private float backpackX = 0.309f;
@@ -21,11 +24,6 @@ public class Janitor3D : MonoBehaviour {
     private Slime3D mySlime = null;
     private ParticleSystem dustTrail;
     private ParticleSystem dustStart;
-
-    [SerializeField]
-    private Vector3 velocity;
-    [SerializeField]
-    private Vector3 lastMotion;
   
    // janitor inputs
     [SerializeField]
@@ -43,6 +41,11 @@ public class Janitor3D : MonoBehaviour {
     [SerializeField]
     public float runSpeed = 20;
 
+    // janitor movement controls
+    [SerializeField]
+    private Vector3 velocity;
+    [SerializeField]
+    private Vector3 lastMotion;
 
     // boolean states
     [SerializeField]
@@ -51,15 +54,10 @@ public class Janitor3D : MonoBehaviour {
 	public bool isVacuuming;
     [SerializeField]
     public bool abductedSlime;
-    [SerializeField]
-    public bool facingRight;
-
-    private int layerMask;
 
     // Use this for initialization
     void Start() 
     {
-        layerMask = 1 << 13;
         rg = this.GetComponent<Rigidbody>();
         col = this.GetComponent<CapsuleCollider>();
         spr = this.GetComponentInChildren<SpriteRenderer>();

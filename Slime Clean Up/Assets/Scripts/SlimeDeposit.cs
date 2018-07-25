@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlimeDeposit : MonoBehaviour {
 	public static SlimeDeposit instance;
+
+	public AudioClip escapeSound;
 	private int numSlimes;
 	[SerializeField]
 	public Transform loc1, loc2, loc3, origin;
@@ -62,6 +64,7 @@ public class SlimeDeposit : MonoBehaviour {
 			item.transform.position = Vector3.MoveTowards(this.origin.position, item.transform.position - this.origin.position, 1f);
 			item.Freed();
 		}
+		SoundManager.instance.PlaySingle(escapeSound);
 		mySlimes.Clear();
 		StartingForce.instance.Explode();
 	}

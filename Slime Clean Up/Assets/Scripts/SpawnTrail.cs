@@ -83,7 +83,7 @@ public class SpawnTrail : MonoBehaviour {
         brush.GetComponentInChildren<SpriteRenderer>().color = colr;
         contacts.RemoveAll(GameObject => GameObject == null);
         
-        if ((last == null && working) || (last != null && !contacts.Contains(last.gameObject) && working))
+        if (((last == null && working) || (last != null && !contacts.Contains(last.gameObject) && working)) && (Time.timeScale != 0))
         {
             GameObject b = Instantiate<GameObject>(brush, this.transform);
             b.transform.parent = slimeParent;

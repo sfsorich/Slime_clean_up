@@ -10000,10 +10000,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba61b077df6979743a50298284e4f1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abductSound: {fileID: 0}
+  depositSound: {fileID: 0}
   janitorBackpack: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   lastMotion: {x: 0, y: 0, z: 0}
   inputMove: {x: 0, y: 0, z: 0}
+  abductTime: 0
   crawlSpeed: 2
   walkSpeed: 8
   runSpeed: 20
@@ -28600,6 +28603,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSeconds: 60
+  winAmount: 250
+  fill: 0
+  UpdateTime: 0
 --- !u!4 &785241969
 Transform:
   m_ObjectHideFlags: 0
@@ -39641,6 +39647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85173676ad04c0a4e8042381f2aa2157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rg: {fileID: 0}
   sprite: {fileID: 0}
   painter: {fileID: 0}
   shadow: {fileID: 0}
@@ -39658,6 +39665,7 @@ MonoBehaviour:
   onSlime: 0
   axisH: 
   axisV: 
+  jump: 
 --- !u!136 &1169222510
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -39840,7 +39848,6 @@ GameObject:
   - component: {fileID: 1178071542}
   - component: {fileID: 1178071540}
   - component: {fileID: 1178071536}
-  - component: {fileID: 1178071541}
   m_Layer: 8
   m_Name: SlimeG
   m_TagString: Slime
@@ -39860,6 +39867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85173676ad04c0a4e8042381f2aa2157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rg: {fileID: 0}
   sprite: {fileID: 0}
   painter: {fileID: 0}
   shadow: {fileID: 0}
@@ -39877,6 +39885,7 @@ MonoBehaviour:
   onSlime: 0
   axisH: 
   axisV: 
+  jump: 
 --- !u!136 &1178071537
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -40027,17 +40036,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1178071541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1178071535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676fdb225f83a6c44bb7882c9bcaca51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1178071542
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -45568,6 +45566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85173676ad04c0a4e8042381f2aa2157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rg: {fileID: 0}
   sprite: {fileID: 0}
   painter: {fileID: 0}
   shadow: {fileID: 0}
@@ -45585,6 +45584,7 @@ MonoBehaviour:
   onSlime: 0
   axisH: 
   axisV: 
+  jump: 
 --- !u!136 &1389305884
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -65636,9 +65636,11 @@ MonoBehaviour:
   loc1: {fileID: 0}
   loc2: {fileID: 0}
   loc3: {fileID: 0}
+  origin: {fileID: 0}
   loc1Used: 0
   loc2Used: 0
   loc3Used: 0
+  mySlimes: []
 --- !u!65 &2036574675
 BoxCollider:
   m_ObjectHideFlags: 0

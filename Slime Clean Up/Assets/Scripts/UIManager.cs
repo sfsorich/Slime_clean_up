@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //uses the p button to pause and unpause the game
+        //uses the esc or start button to pause and unpause the game
         if ( (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) && !GameManage.endBool )//not sure if these will work with controllers but keeping || Input.GetButtonDown("Start") || Input.GetButtonDown("Start_2")
         {
             PauseControl();
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
         {
             g.SetActive(false);
         }
-        Debug.Log("hiding cursor");
+        //Debug.Log("hiding cursor");
         Cursor.visible = true;
     }
 }

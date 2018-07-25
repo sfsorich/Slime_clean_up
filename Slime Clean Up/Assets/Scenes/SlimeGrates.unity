@@ -7168,7 +7168,7 @@ GameObject:
   - component: {fileID: 241169680}
   m_Layer: 5
   m_Name: Panel
-  m_TagString: Untagged
+  m_TagString: ShowOnPause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11840,7 +11840,7 @@ GameObject:
   - component: {fileID: 486854972}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: ShowOnPause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26404,7 +26404,7 @@ GameObject:
   - component: {fileID: 723472509}
   m_Layer: 5
   m_Name: RestartButton
-  m_TagString: Untagged
+  m_TagString: ShowOnPause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41809,7 +41809,6 @@ GameObject:
   - component: {fileID: 1178071537}
   - component: {fileID: 1178071540}
   - component: {fileID: 1178071536}
-  - component: {fileID: 1178071541}
   m_Layer: 8
   m_Name: SlimeG
   m_TagString: Slime
@@ -41998,17 +41997,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1178071541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1178071535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676fdb225f83a6c44bb7882c9bcaca51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1181376467
 Transform:
   m_ObjectHideFlags: 0
@@ -43840,7 +43828,7 @@ GameObject:
   - component: {fileID: 1279899145}
   m_Layer: 5
   m_Name: Panel
-  m_TagString: Untagged
+  m_TagString: ShowOnPause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69861,7 +69849,7 @@ GameObject:
   - component: {fileID: 2084807506}
   m_Layer: 5
   m_Name: QuitButton
-  m_TagString: Untagged
+  m_TagString: ShowOnPause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
