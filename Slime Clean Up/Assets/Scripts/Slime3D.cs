@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Slime3D : MonoBehaviour {
+
+    //slime utils
 	public Rigidbody rg;
 	private SpriteRenderer spr;
     public GameObject sprite;
     public GameObject painter;
     public GameObject shadow;
-    private bool isAbducted;
     private Transform offset;
+    public Color baseColor;
 
     //merging
     public int priority = 0;
@@ -20,18 +22,17 @@ public class Slime3D : MonoBehaviour {
     public bool justUnMerged = false;
     public bool justMerged = false;
 
-    public Color baseColor;
+	[SerializeField]
+	private bool onSlime = false;
+    private bool isAbducted;
 
+    // input and movement
+	[SerializeField]
+	public Vector3 inputMove = Vector3.zero;   
 	[SerializeField]
 	public float speed;
 	public Vector3 velocity;
-
-	[SerializeField]
-	public Vector3 inputMove = Vector3.zero;
-
-	[SerializeField]
-	private bool onSlime = false;
-	[SerializeField]
+    [SerializeField]
 	private string axisH, axisV, jump;
     private int jumping = 0;
 	private int height = 0;
@@ -70,10 +71,10 @@ public class Slime3D : MonoBehaviour {
                 break;
 		}
 
+        // ignore all collsions with slimes and the slime grates
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Slime"))
         {
                 Physics.IgnoreCollision(g.GetComponent<Collider>(), this.GetComponent<Collider>());
-                //print("Ignored Slime");
         }
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("SlimeGrate"))
         {
@@ -85,47 +86,51 @@ public class Slime3D : MonoBehaviour {
 		inputMove.x = Input.GetAxis(axisH);
 		inputMove.z = Input.GetAxis(axisV);
 
-		if (Input.GetButton(jump) && !merged)
-		{
-			this.GetComponent<Rigidbody>().drag = 5;
-			float scaleX = this.transform.localScale.x + (inputMove.x != 0 ? .01f : 0);
-			if (scaleX > 1.5)
-			{
-				scaleX = 1.5f;
-			}
-			float scaleY = this.transform.localScale.y + (inputMove.y != 0 ? .01f : 0);
-			if (scaleY > 1.5)
-			{
-				scaleY = 1.5f;
-			}
-			float scaleZ = this.transform.localScale.z - .01f;
-			if(scaleZ < .5)
-			{
-				scaleZ = .5f;
-			}
+        if (!merged && !isAbducted)
+        {
+            if (Input.GetButton(jump))
+            {
+                this.GetComponent<Rigidbody>().drag = 5;
+                float scaleX = this.transform.localScale.x + (inputMove.x != 0 ? .01f : 0);
+                if (scaleX > 1.5)
+                {
+                    scaleX = 1.5f;
+                }
+                float scaleY = this.transform.localScale.y + (inputMove.y != 0 ? .01f : 0);
+                if (scaleY > 1.5)
+                {
+                    scaleY = 1.5f;
+                }
+                float scaleZ = this.transform.localScale.z - .01f;
+                if(scaleZ < .5)
+                {
+                    scaleZ = .5f;
+                }
 
-			inputMove.x = 0;
-			inputMove.z = 0;
-			jumping++;
-			this.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
-		}
-		if (Input.GetButtonUp(jump) && !merged)
-		{
-			this.transform.localScale = new Vector3(1, 1, 1);
-			this.GetComponent<Rigidbody>().drag = 0.5f;
-			if(jumping > 30)
-			{
-				height = 1;
-				if(jumping > 80)
-				{
-					jumping = 80;
-				}
-			}
-			else
-			{
-				jumping = 0;
-			}
-		}
+                inputMove.x = 0;
+                inputMove.z = 0;
+                jumping++;
+                this.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+            }
+            if (Input.GetButtonUp(jump))
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+                this.GetComponent<Rigidbody>().drag = 0.5f;
+                if(jumping > 30)
+                {
+                    height = 1;
+                    if(jumping > 80)
+                    {
+                        jumping = 80;
+                    }
+                }
+                else
+                {
+                    jumping = 0;
+                }
+            }
+        }
+
 		if(height > 0){
 			velocity = Vector3.ClampMagnitude(inputMove, 1.0f) * speed * 10;
 
@@ -158,14 +163,13 @@ public class Slime3D : MonoBehaviour {
         {
             mergedOmega.rg.position = mergedAlpha.rg.position;
         }
+
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
         if (inputMove != Vector3.zero)
         {
-            //rg.MovePosition(rg.position +  new Vector2(velocity * Time.fixedDeltaTime * Input.GetAxis("Horizontal"), velocity * Time.fixedDeltaTime * Input.GetAxis("Vertical")));
-
             if (!merged)
             {
                 rg.AddForce(velocity, ForceMode.Force);
@@ -179,8 +183,7 @@ public class Slime3D : MonoBehaviour {
                     spr.flipX = true;
                 }
             }
-
-            if (merged)
+            else
             {
                 Vector3 mergeInput = mergedAlpha.inputMove + mergedOmega.inputMove;
 
@@ -200,10 +203,8 @@ public class Slime3D : MonoBehaviour {
                     UnMerge();
                 }
 
-
             }
-
-            
+   
         }
 	}
 
@@ -297,8 +298,6 @@ public class Slime3D : MonoBehaviour {
 
         merged = false;
 
-        
-
         justUnMerged = true;
         StartCoroutine(WaitSec(1));
     }
@@ -360,10 +359,12 @@ public class Slime3D : MonoBehaviour {
     private IEnumerator WaitSec(float sec)
     {
         yield return new WaitForSeconds(sec);
+
         if (justMerged)
             justMerged = false;
         if (justUnMerged)
             justUnMerged = false;
+
         yield return new WaitForEndOfFrame();
     }
 }

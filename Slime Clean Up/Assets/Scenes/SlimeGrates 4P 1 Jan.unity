@@ -10114,6 +10114,7 @@ MonoBehaviour:
   abductSound: {fileID: 8300000, guid: 549e8a916b7d3b548bd62fb529a089b6, type: 3}
   depositSound: {fileID: 8300000, guid: f55ecd5833bf6e340ac66b670bb390a7, type: 3}
   janitorBackpack: {fileID: 0}
+  painter: {fileID: 0}
   inputMove: {x: 0, y: 0, z: 0}
   abductTime: 0
   crawlSpeed: 2
@@ -10121,6 +10122,11 @@ MonoBehaviour:
   runSpeed: 20
   velocity: {x: 0, y: 0, z: 0}
   lastMotion: {x: 0, y: 0, z: 0}
+  axisH: 
+  axisV: 
+  jumpButton: 
+  vacuumButton: 
+  sprintButton: 
   isSprinting: 0
   isVacuuming: 0
   abductedSlime: 0
@@ -68981,8 +68987,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.9, y: 3.64, z: 6.2}
-  m_Center: {x: -0.7, y: -1.59, z: -1.1}
+  m_Size: {x: 3.4, y: 3.64, z: 2.7}
+  m_Center: {x: -0.7, y: -1.59, z: -0.9}
 --- !u!1001 &2039170456
 Prefab:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTrail : MonoBehaviour {
+    
     [SerializeField]
     private GameObject brush;
     public List<GameObject> contacts;
@@ -74,8 +75,6 @@ public class SpawnTrail : MonoBehaviour {
             b.GetComponent<DeleteBrush>().val = val;
             b.SetActive(true);
         }*/
-
-        
     }
 
     private void Update()
@@ -92,7 +91,6 @@ public class SpawnTrail : MonoBehaviour {
             b.GetComponent<DeleteBrush>().val = val;
             b.SetActive(true);
         }
-        //print(last.name);
     }
 
     private IEnumerator ShrinkDie(GameObject o)
@@ -112,7 +110,7 @@ public class SpawnTrail : MonoBehaviour {
         //}
 
         //Destroy(o);
-        
+
         o.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(o.GetComponentInChildren<SpriteRenderer>().color, colr, 0.5f);
 
         if(o.GetComponent<DeleteBrush>().size < size)
@@ -120,7 +118,6 @@ public class SpawnTrail : MonoBehaviour {
             o.GetComponent<DeleteBrush>().UpdateSize(size);
         }
         
-
         yield return new WaitForEndOfFrame();
     }
 }

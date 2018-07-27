@@ -12,20 +12,12 @@ public class DeleteBrush : MonoBehaviour
 
     private void Start()
     {
-
         sprite = this.transform.GetChild(0);
         sprite.localScale *= 0.5f;
     }
 
-    public void Kill(){
-        Destroy(this.gameObject);
-    }
-
-    IEnumerator KillCo(){
-        for (int i = 10; i > 0; i--){
-            this.transform.localScale *= 0.5f;
-            yield return new WaitForEndOfFrame();
-        }
+    public void Kill()
+    {
         Destroy(this.gameObject);
     }
 
@@ -43,14 +35,13 @@ public class DeleteBrush : MonoBehaviour
         {
             if (!other.GetComponent<DeleteBrush>().touched)
             {
-               other.GetComponent<DeleteBrush>().Kill();
+               Destroy(other.gameObject);
             }    
         }
     }
 
     private void Update()
     {
-        //t += Time.deltaTime;
         sprite.localScale = Vector3.Lerp(sprite.localScale, new Vector3(size, size, size), 0.05f);
 
         if (size <= 0.1) 

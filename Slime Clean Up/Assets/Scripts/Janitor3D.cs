@@ -23,6 +23,8 @@ public class Janitor3D : MonoBehaviour {
     [SerializeField]
     private Transform painter;
     private Slime3D mySlime = null;
+     public float abductTime;
+
     private ParticleSystem dustTrail;
     private ParticleSystem dustStart;
   
@@ -32,7 +34,6 @@ public class Janitor3D : MonoBehaviour {
     private bool inputVacuum;
     private bool inputSprint;
 
-    public float abductTime;
     // speeds of the janitor
     private float speed = 1;
     [SerializeField]
@@ -79,15 +80,18 @@ public class Janitor3D : MonoBehaviour {
                 sprintButton = "Fire3_2";
 				break;
 		}
+
         rg = this.GetComponent<Rigidbody>();
         col = this.GetComponent<CapsuleCollider>();
         spr = this.GetComponentInChildren<SpriteRenderer>();
-        dustTrail = this.GetComponentsInChildren<ParticleSystem>()[0];
-        dustStart = this.GetComponentsInChildren<ParticleSystem>()[1];
-        janitorBackpack = this.GetComponentsInChildren<Transform>()[6];
-        janitorVacuum = this.GetComponentsInChildren<Transform>()[7];
         anim = this.GetComponentInChildren<Animator>();
         painter = this.transform.Find("Painter");
+
+        dustTrail = this.GetComponentsInChildren<ParticleSystem>()[0];
+        dustStart = this.GetComponentsInChildren<ParticleSystem>()[1];
+
+        janitorBackpack = this.GetComponentsInChildren<Transform>()[6];
+        janitorVacuum = this.GetComponentsInChildren<Transform>()[7];
     }
 
     /// <summary>
@@ -167,9 +171,8 @@ public class Janitor3D : MonoBehaviour {
 				dustTrail.Play();
 			}
 
-            anim.Play("JanitorRunRough");
             anim.speed = Mathf.Max(0.5f, Vector3.ClampMagnitude(inputMove, 1).magnitude);
-
+            anim.Play("JanitorRunRough");
             janitorVacuum.rotation = Quaternion.FromToRotation(transform.right, inputMove);
         } 
         

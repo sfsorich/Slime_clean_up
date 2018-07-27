@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeDeposit : MonoBehaviour {
+	
 	public static SlimeDeposit instance;
 
 	public AudioClip escapeSound;
@@ -13,6 +14,8 @@ public class SlimeDeposit : MonoBehaviour {
 	private bool loc1Used, loc2Used, loc3Used;
 	[SerializeField]
 	private List<Slime3D> mySlimes;
+	
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -24,12 +27,6 @@ public class SlimeDeposit : MonoBehaviour {
 		instance = this;
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
-
 	public Transform HoldSlime()
 	{
 		if (!loc1Used) 
@@ -64,25 +61,15 @@ public class SlimeDeposit : MonoBehaviour {
 			slime.transform.position = Vector3.MoveTowards(this.origin.position, slime.transform.position - this.origin.position, 1f);
 			slime.Freed();
 		}
-		SoundManager.instance.PlaySingle(escapeSound);
+
 		mySlimes.Clear();
+
+		SoundManager.instance.PlaySingle(escapeSound);
 		StartingForce.instance.Explode();
 	}
 
 	public void SetSlime(Slime3D slime)
 	{
 		mySlimes.Add(slime);
-	}
-
-	/// <summary>
-	/// OnTriggerEnter is called when the Collider other enters the trigger.
-	/// </summary>
-	/// <param name="other">The other Collider involved in this collision.</param>
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Slime")
-		{
-
-		}
 	}
 }

@@ -12,28 +12,22 @@ public class EndMenu : MonoBehaviour {
 	private Text numSlimeText;
 	private Text winnerText;
 
-	// Use this for initialization
-	void Awake () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 	/// <summary>
 	/// This function is called when the object becomes enabled and active.
 	/// </summary>
 	void OnEnable()
 	{
 		numSlimeG = 0;
+
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Brush"))
         {
             numSlimeG += g.GetComponent<DeleteBrush>().val;
         }
+
 		numSlimeText = this.GetComponentInChildren<Text>();
 		winnerText = this.GetComponentsInChildren<Text>()[1];
 		winnerText.text = " ";
+
 		StartCoroutine(CountSlimes());
 	}
 
